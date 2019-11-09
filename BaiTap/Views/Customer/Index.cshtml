@@ -1,0 +1,81 @@
+﻿@*@using BaiTap.Models;*@
+@model IEnumerable<BaiTap.Models.Customer>;
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@{
+    //var lisCustomer = new List<Customer>();
+    //lisCustomer.Add(new Customer
+    //{ Age = 31, Name = "BachNX", ID = 1 });
+    //lisCustomer.Add(new Customer
+    //{ Age = 6, Name = "MaiVC", ID = 2 });
+    //lisCustomer.Add(new Customer
+    //{ Age = 4, Name = "KienVM", ID = 3 });
+    //lisCustomer.Add(new Customer
+    //{ Age = 41, Name = "DungVT", ID = 4 });
+}
+
+@{
+    //var selectLisCustomer = new List<Customer>();
+    //foreach (var cutomer in lisCustomer)
+    //{
+    //    if (cutomer.Age > 30) { selectLisCustomer.Add(cutomer); }
+
+    //}
+}
+
+<div>
+    <h1>Customer </h1>
+    <hr />
+    <p>
+        <a asp-action="Create">Create New</a>
+    </p>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Name)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Age)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ID)
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Age)
+                    </td>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@item.ID">Edit</a>
+                        |
+                        <a asp-action="View" asp-route-id="@item.ID">View</a>
+                        |
+                        <a asp-action="Delete" asp-route-id="@item.ID">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+
+
+@*@{
+        foreach (var cutomer in selectLisCustomer)
+        {
+        <p>@cutomer.Name</p>
+
+        }
+    }*@
+

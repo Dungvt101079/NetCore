@@ -1,0 +1,22 @@
+﻿@model BaiTap.Models.Customer;
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<form asp-controller="Customer" asp-action="Save">
+    <div>
+        <label asp-for="Name"></label>
+        <input asp-for="Name" />
+    </div>
+    <div>
+        <label asp-for="Age"></label>
+        <input asp-for="Age" />
+    </div>
+    <div>
+        <label asp-for="ID"></label>
+        <input asp-for="ID" />
+    </div>
+    <button type="submit">Create</button>
+</form>
+
