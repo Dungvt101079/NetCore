@@ -19,25 +19,17 @@ namespace BaiTap.Sevies
         }
         public static void EditbyID(Customer customer)
         {
-            foreach (var item in customers)
-            {
-                if (item.ID == customer.ID)
-                {
-                    item.Name = customer.Name;
-                    item.Age = customer.Age;
-                    
-                }
-            }
+            
         }
         public static Customer GetCustomersbyID(int ID)
         {
 
-            return customers.FirstOrDefault(c => c.ID == ID);
+            return null;
         }
         public static void DeleteCustomersbyID(int ID)
         {
 
-            customers.Remove(customers.FirstOrDefault(c => c.ID == ID));
+            
 
         }
     }
