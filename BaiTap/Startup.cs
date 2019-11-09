@@ -12,7 +12,8 @@ using BaiTap.Data;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-
+using BaiTap.Servies;
+using BaiTap.Repositories;
 namespace BaiTap
 {
     public class Startup
@@ -34,6 +35,9 @@ namespace BaiTap
                 .AddEntityFrameworkStores<ApplicationDbContext>();
             services.AddControllersWithViews();
             services.AddRazorPages();
+
+            services.AddTransient<ICustomerSevies, CustomerServies>();
+            services.AddTransient<ICustomerRepository, CustomerRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

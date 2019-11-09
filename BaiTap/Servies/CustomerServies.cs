@@ -3,34 +3,40 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using BaiTap.Models;
-namespace BaiTap.Sevies
+using BaiTap.Repositories;
+namespace BaiTap.Servies
 {
-    public class CustomerServies
+    public class CustomerServies : ICustomerSevies
     {
-        public static List<Customer> customers = new List<Customer>();
-        public static List<Customer> GetCustomers()
+        private readonly ICustomerRepository _repo;
+        public CustomerServies(ICustomerRepository repo)
         {
-            return customers;
+            _repo = repo;
         }
-        public static void AddCustomer(Customer customer)
+        bool ICustomerSevies.AddCustomer(Customer customer)
         {
-            customers.Add(customer);
-
+            return _repo.AddCustomer(customer);
         }
-        public static void EditbyID(Customer customer)
+
+        bool ICustomerSevies.DeleteCustomer(string id)
         {
-            
+            return _repo.DeleteCustomer(id);
         }
-        public static Customer GetCustomersbyID(int ID)
-        {
 
-            return null;
+        bool ICustomerSevies.EditCustomer(Customer customer)
+        {
+            return _repo.EditCustomer(customer);
         }
-        public static void DeleteCustomersbyID(int ID)
+
+        Customer ICustomerSevies.GetCustomerById(string Id)
         {
+            return _repo.GetCustomerById(Id);
+        }
 
-            
+        List<Customer> ICustomerSevies.GetCustomers()
 
+        {
+            return _repo.GetCustomers();
         }
     }
 }

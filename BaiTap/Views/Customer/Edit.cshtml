@@ -6,13 +6,20 @@
 <h1>Sửa thông tin</h1>
 <form asp-controller="Customer" asp-action="EditbyID">
     <div>
-        <label asp-for="Name" ></label>
+        <label asp-for="Name"></label>
         <input asp-for="Name" />
     </div>
     <div>
         <label asp-for="Age"></label>
         <input asp-for="Age" />
     </div>
-   
+    <div>
+        <label asp-for="Address"></label>
+        <input asp-for="Address" />
+    </div>
+    <div >
+        <label asp-for="Id"></label>
+        <input asp-for="Id" readonly/>
+    </div>
     <button type="submit">Save</button>
 </form>

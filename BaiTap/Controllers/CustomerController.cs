@@ -4,30 +4,21 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using BaiTap.Models;
-using BaiTap.Sevies;
+using BaiTap.Servies;
+
 namespace BaiTap.Controllers
 {
     public class CustomerController : Controller
     {
+        private readonly ICustomerSevies _service;
+        public CustomerController(ICustomerSevies service)
+        {
+            _service = service;
+        }
         public IActionResult Index()
         {
-            var lisCustomer = new List<Customer>();
-            lisCustomer = CustomerServies.GetCustomers();
+            var lisCustomer = _service.GetCustomers();
 
-            //lisCustomer.Add(new Customer
-            //{ Age = 31, Name = "BachNX", ID = 1 });
-            //lisCustomer.Add(new Customer
-            //{ Age = 6, Name = "MaiVC", ID = 2 });
-            //lisCustomer.Add(new Customer
-            //{ Age = 4, Name = "KienVM", ID = 3 });
-            //lisCustomer.Add(new Customer
-            //{ Age = 41, Name = "DungVT", ID = 4 });
-            var selectLisCustomer = new List<Customer>();
-            //foreach (var cutomer in lisCustomer)
-            //{
-            //    if (cutomer.Age > 30) { selectLisCustomer.Add(cutomer); }
-
-            //}
             return View(lisCustomer);
         }
         public IActionResult Create()
@@ -36,29 +27,32 @@ namespace BaiTap.Controllers
         }
         public IActionResult Save(Customer customer)
         {
-            CustomerServies.AddCustomer(customer);
+            _service.AddCustomer(customer);
+            
             return Redirect("Index");
         }
         public IActionResult EditbyID(Customer customer)
         {
-            CustomerServies.EditbyID(customer);
+            _service.EditCustomer(customer);
             return Redirect("Index");
         }
-        public IActionResult Edit(Int32 id)
+        public IActionResult Edit(string id)
         {
-            Customer customer = CustomerServies.GetCustomersbyID(id);
+            Customer customer = _service.GetCustomerById(id);
             return View(customer);
         }
-        public IActionResult View(Int32 id)
+        public IActionResult View(string id)
         {
-            Customer customer = CustomerServies.GetCustomersbyID(id);
+            Customer customer = _service.GetCustomerById(id);
             return View(customer);
         }
-        public IActionResult Delete(Int32 id)
+        public IActionResult Delete(string id)
         {
-            CustomerServies.DeleteCustomersbyID(id);
+            _service.DeleteCustomer(id);
             return RedirectToAction("Index");
         }
+
+       
     }
 
 }
