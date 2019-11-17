@@ -9,11 +9,11 @@ namespace BaiTap.Servies
     public class CustomerServies : ICustomerSevies
     {
         private readonly ICustomerRepository _repo;
-        public CustomerServies(ICustomerRepository repo)
+        public CustomerServies(ICustomerRepository repos)
         {
-            _repo = repo;
+            _repo = repos;
         }
-        bool ICustomerSevies.AddCustomer(Customer customer)
+        Guid ICustomerSevies.AddCustomer(Customer customer)
         {
             return _repo.AddCustomer(customer);
         }

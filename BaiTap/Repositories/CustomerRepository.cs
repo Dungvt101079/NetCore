@@ -16,21 +16,20 @@ namespace BaiTap.Repositories
             _context = context;
         }
 
-        public bool AddCustomer(Customer customer)
+        public Guid AddCustomer(Customer customer)
         {
             try
             {
-                using (_context)
-                {
-                    _context.Customers.Add(customer);
-                    _context.SaveChanges();
-                    return true;
-                }
+
+                _context.Customers.Add(customer);
+                _context.SaveChanges();
+                return customer.Id;
+
             }
             catch (Exception e)
             {
                 Console.WriteLine(e.Message);
-                return false;
+                return Guid.Empty;
             }
 
         }
@@ -39,12 +38,11 @@ namespace BaiTap.Repositories
         {
             try
             {
-                using (_context)
-                {
-                    _context.Customers.Remove(_context.Customers.FirstOrDefault(c=>c.Id == new Guid(id)));
-                    _context.SaveChanges();
-                    return true;
-                }
+
+                _context.Customers.Remove(_context.Customers.FirstOrDefault(c => c.Id == new Guid(id)));
+                _context.SaveChanges();
+                return true;
+
             }
             catch (Exception e)
             {
@@ -57,16 +55,17 @@ namespace BaiTap.Repositories
         {
             try
             {
-                using (_context)
-                {
-                    var customerEntity = _context.Customers.FirstOrDefault(c => c.Id == customer.Id);
 
-                    customerEntity.Name = customer.Name;
-                    customerEntity.Age = customer.Age;
-                    customerEntity.Address = customer.Address;
-                    _context.SaveChanges();
-                    return true;
-                }
+                var customerEntity = _context.Customers.FirstOrDefault(c => c.Id == customer.Id);
+
+                customerEntity.Name = customer.Name;
+                customerEntity.Age = customer.Age;
+                customerEntity.Address = customer.Address;
+                customerEntity.UpdatedBy = customer.Id.ToString();
+                customerEntity.UpdatedDate = DateTime.Now;
+                _context.SaveChanges();
+                return true;
+
             }
             catch (Exception e)
             {
@@ -79,11 +78,10 @@ namespace BaiTap.Repositories
         {
             try
             {
-                using (_context)
-                {
-                    var listCustomer = _context.Customers.FirstOrDefault(x => x.Id == new Guid(id));
-                    return listCustomer;
-                }
+
+                var listCustomer = _context.Customers.FirstOrDefault(x => x.Id == new Guid(id));
+                return listCustomer;
+
             }
             catch (Exception e)
             {
@@ -96,11 +94,10 @@ namespace BaiTap.Repositories
         {
             try
             {
-                using (_context)
-                {
-                    var listCustomer = _context.Customers.ToList();
-                    return listCustomer;
-                }
+
+                var listCustomer = _context.Customers.ToList();
+                return listCustomer;
+
             }
             catch (Exception e)
             {

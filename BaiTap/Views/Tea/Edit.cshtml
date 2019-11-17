@@ -1,0 +1,37 @@
+﻿
+@model BaiTap.ViewModels.TeaOrderViewModel
+@{
+    ViewData["Title"] = "EditTeaOder";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>EditTeaOder</h1>
+
+<form asp-controller="Tea" asp-action="SaveEdit">
+    <div class="form-group">
+        <label asp-for="Id"></label>
+        <input asp-for="Id" readonly />
+    </div>
+    <div class="form-group">
+        <label asp-for="Name"></label>
+        <input asp-for="Name" class="form-control">
+    </div>
+    <div class="form-group">
+        <label asp-for="TotalPrice"></label>
+        <input asp-for="TotalPrice" class="form-control">
+    </div>
+    <div class="form-group">
+        <label>Customer :</label>
+        <select asp-for="CustomerId"
+                asp-items="Model.CustomerSelections" class="form-control">
+            <option>Please select one customer</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label>Products :</label>
+        <select class="form-control" id="TeaIds" multiple="multiple" asp-items="Model.Teas" asp-for="TeaIds" name="TeaIds">
+            <option>Please select one customer</option>
+        </select>
+    </div>
+    <button type="submit" class="btn btn-primary">Save</button>
+</form>

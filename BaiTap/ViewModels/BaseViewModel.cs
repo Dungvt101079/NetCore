@@ -3,25 +3,19 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace BaiTap.Models
+namespace BaiTap.ViewModels
 {
-    public class BaseModel
+    public class BaseViewModel
     {
-        public BaseModel()
+        public BaseViewModel()
         {
             Id = Guid.NewGuid();
-            CreatedDate = DateTime.Now;
-            CreatedBy = Guid.NewGuid().ToString();
-            UpdatedDate = DateTime.Now;
+            CreatedDate = DateTime.UtcNow;
         }
         public Guid Id { get; set; }
         public DateTime CreatedDate { get; set; }
-
         public DateTime? UpdatedDate { get; set; }
-
         public string CreatedBy { get; set; }
         public string UpdatedBy { get; set; }
-
-
     }
 }

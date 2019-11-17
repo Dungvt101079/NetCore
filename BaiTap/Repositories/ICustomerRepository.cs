@@ -11,7 +11,7 @@ namespace BaiTap.Repositories
         List<Customer> GetCustomers();
         Customer GetCustomerById(string Id);
         bool EditCustomer(Customer customer);
-        bool AddCustomer(Customer customer);
+        Guid AddCustomer(Customer customer);
         bool DeleteCustomer(string id);
     }
 }

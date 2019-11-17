@@ -28,6 +28,7 @@ namespace BaiTap.Controllers
         public IActionResult Save(Customer customer)
         {
             _service.AddCustomer(customer);
+
             
             return Redirect("Index");
         }
